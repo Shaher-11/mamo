@@ -15,5 +15,16 @@
 require 'rails_helper'
 
 RSpec.describe Transaction, type: :model do
-  
+  it 'belongs to the receiver wallet' do
+    relation = Transaction.reflect_on_association(:to_wallet)
+    expect(relation.macro).to eq :belongs_to
+  end
+  it 'belongs to the sender wallet' do
+    relation = Transaction.reflect_on_association(:from_wallet)
+    expect(relation.macro).to eq :belongs_to
+  end
+
+  describe 'Validations' do
+    it { is_expected.to validate_presence_of(:transaction_type) }
+  end
 end

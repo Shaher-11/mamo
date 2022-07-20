@@ -13,5 +13,12 @@
 require 'rails_helper'
 
 RSpec.describe Wallet, type: :model do
-  
+  it 'has many transactions' do
+    relation = Wallet.reflect_on_association(:transactions)
+    expect(relation.macro).to eq :has_many
+  end
+  it 'belongs to an account' do
+    relation = Wallet.reflect_on_association(:account)
+    expect(relation.macro).to eq :belongs_to
+  end
 end
