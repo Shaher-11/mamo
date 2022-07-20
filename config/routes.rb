@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  post '/transactions', to: 'transactions#create'
+  get '/transactions/history/:id', to: 'transactions#history', as: 'transactions_history'
 end

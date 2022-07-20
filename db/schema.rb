@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_210_909_023_324) do
+ActiveRecord::Schema.define(version: 20_220_719_090_808) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -27,5 +27,21 @@ ActiveRecord::Schema.define(version: 20_210_909_023_324) do
     t.index ['email'], name: 'index_accounts_on_email'
     t.index ['phone_number'], name: 'index_accounts_on_phone_number'
     t.index ['status'], name: 'index_accounts_on_status'
+  end
+
+  create_table 'transactions', force: :cascade do |t|
+    t.string 'transaction_type'
+    t.decimal 'amount', precision: 8, scale: 2
+    t.integer 'to_wallet_id'
+    t.integer 'from_wallet_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+  end
+
+  create_table 'wallets', force: :cascade do |t|
+    t.decimal 'balance', precision: 8, scale: 2
+    t.integer 'account_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 end

@@ -9,7 +9,7 @@
 #  first_name   :string
 #  last_name    :string
 #  phone_number :string
-#  status       :integer          default(0), not null
+#  status       :integer          default("pending"), not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
@@ -21,10 +21,10 @@
 #
 class Account < ApplicationRecord
   validates :first_name, :last_name, :email, :phone_number, presence: true
-
+  has_one :wallet
   enum status: {
     unverified: -1,
     pending: 0,
     verified: 1
-  }, _suffix: true
+  }
 end
