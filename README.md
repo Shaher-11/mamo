@@ -25,8 +25,3 @@
 as long the account is created and verfied and has a wallet then then the amount will be deducted from the sender account and added to the receiver account other wise we return 403,
 also user can send by phone number or email.
 
-
-## Challenge
-
-See [`doc/challenge/README.md`](./doc/challenge/README.md)
-
